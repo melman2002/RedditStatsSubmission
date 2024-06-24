@@ -1,0 +1,43 @@
+<h1 id="tableLabel">r/worldnews</h1>
+
+<p *ngIf="!stats"><em>Initializing...</em></p>
+
+<table *ngIf="stats">
+  <caption><u>Top Posts</u></caption>
+  <thead>
+    <tr>
+      <th>Up Votes</th>
+      <th>Title</th>
+      <th>User</th>
+      <th>Created</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngIf="!stats.posts.length">
+      <td></td>
+      <td>Waiting for activity...</td>
+    </tr>
+    <tr *ngFor="let post of stats.posts">
+      <td>{{ post.upVotesCount }}</td>
+      <td><a href="http://www.reddit.com{{ post.url }}" style="color: #000000; text-decoration: none">{{ post.title }}</a></td>
+      <td>{{ post.username }}</td>
+      <td>{{ getMinutesAgo(post.created) }} min. ago</td>
+    </tr>
+  </tbody>
+</table>
+
+<table *ngIf="stats" style="margin-top:20px">
+  <caption><u>Active Users</u></caption>
+  <thead>
+    <tr>
+      <th>Posts</th>
+      <th>User</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let post of stats.users">
+      <td>{{ post.postsCount }}</td>
+      <td>{{ post.name }}</td>
+    </tr>
+  </tbody>
+</table>
